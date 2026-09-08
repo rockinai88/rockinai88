@@ -24,10 +24,13 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Sync verified Pull Shark level
+      - name: GraphQL repository-token capability probe
         env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: python3 scripts/sync_pull_shark.py --write
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          query='query($login:String!,$from:DateTime!,$to:DateTime!){user(login:$login){contributionsCollection(from:$from,to:$to){pullRequestContributions(first:1){totalCount nodes{isRestricted pullRequest{merged}}}}}}'
+          gh api graphql -f query="$query" -F login=rockinai88 -F from=2026-08-07T00:00:00Z -F to=2026-09-08T23:59:59Z --jq '.data.user.contributionsCollection.pullRequestContributions | {totalCount, sampleRestricted:.nodes[0].isRestricted, sampleMerged:.nodes[0].pullRequest.merged}'
 
       - name: Regenerate profile README
         run: python3 scripts/generate_profile.py
