@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "source": "verified-github-profile",
+  "achievements": [
+    {
+      "id": "pull-shark",
+      "name": "Pull Shark",
+      "count": 2,
+      "verified": true
+    },
+    {
+      "id": "pair-extraordinaire",
+      "name": "Pair Extraordinaire",
+      "count": 1,
+      "verified": true
+    },
+    {
+      "id": "yolo",
+      "name": "YOLO",
+      "count": 1,
+      "verified": true
+    },
+    {
+      "id": "quickdraw",
+      "name": "Quickdraw",
+      "count": 1,
+      "verified": true
+    }
+  ]
+}

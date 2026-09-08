@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "brand": "RockIn AI Factory",
+  "tagline": "Secure, reproducible AI engineering from idea to verified result.",
+  "focus": [
+    "AI Systems",
+    "Apps",
+    "AI Agents",
+    "Skills",
+    "Automation",
+    "Cloud Workflows"
+  ],
+  "stack": [
+    "GitHub",
+    "GitHub Actions",
+    "Vercel",
+    "TypeScript",
+    "Next.js",
+    "Python",
+    "PowerShell"
+  ],
+  "assets": {
+    "hero_dark": "./assets/rockin-logo-dark.svg",
+    "hero_light": "./assets/rockin-logo-light.svg",
+    "achievements_dark": "./assets/github-achievements-motion.svg",
+    "achievements_light": "./assets/github-achievements-motion-light.svg"
+  },
+  "rights": "./RIGHTS.md"
+}
