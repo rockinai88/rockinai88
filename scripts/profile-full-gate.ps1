@@ -20,8 +20,9 @@ function Invoke-GateStep {
 
 $Python = (Get-Command python -ErrorAction Stop).Source
 $env:PYTHONDONTWRITEBYTECODE = '1'
-Invoke-GateStep 'PY_COMPILE' { & $Python -m py_compile 'scripts/generate_profile.py' 'scripts/validate-profile.py' }
+Invoke-GateStep 'PY_COMPILE' { & $Python -m py_compile 'scripts/generate_profile.py' 'scripts/sync_pull_shark.py' 'scripts/validate-profile.py' }
 if (Test-Path 'scripts/__pycache__') { Remove-Item -LiteralPath 'scripts/__pycache__' -Recurse -Force }
+Invoke-GateStep 'UNIT_TESTS' { & $Python -m unittest discover -s tests -p 'test_*.py' }
 Invoke-GateStep 'GENERATOR_CHECK' { & $Python 'scripts/generate_profile.py' --check }
 Invoke-GateStep 'PROFILE_VALIDATE' { & $Python 'scripts/validate-profile.py' }
 Invoke-GateStep 'GIT_DIFF_CHECK' { git diff --check }

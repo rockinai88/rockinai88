@@ -17,10 +17,10 @@ AI Systems · Apps · AI Agents · Skills · Automation · Cloud Workflows
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/github-achievements-motion.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/github-achievements-motion-light.svg">
-  <img alt="Animated GitHub achievement trophies: Pull Shark x2, Pair Extraordinaire, YOLO and Quickdraw" src="./assets/github-achievements-motion.svg" width="100%">
+  <img alt="Animated GitHub achievement trophies: Pull Shark x3, Pair Extraordinaire, YOLO and Quickdraw" src="./assets/github-achievements-motion.svg" width="100%">
 </picture>
 
-<sub>Pull Shark ×2 · Pair Extraordinaire · YOLO · Quickdraw</sub>
+<sub>Pull Shark ×3 · Pair Extraordinaire · YOLO · Quickdraw</sub>
 
 [Rights & usage](./RIGHTS.md)
 
