@@ -7,6 +7,7 @@ import os
 import re
 import urllib.parse
 import urllib.request
+from collections.abc import Mapping
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -85,6 +86,12 @@ def build_search_url(username: str) -> str:
     return f"https://api.github.com/search/issues?{query}"
 
 
+def resolve_search_token(environment: Mapping[str, str]) -> str:
+    token = str(environment.get("ACHIEVEMENT_GITHUB_TOKEN", "")).strip()
+    if not token:
+        raise RuntimeError("ACHIEVEMENT_GITHUB_TOKEN_MISSING")
+    return token
+
 def fetch_merged_pr_count(username: str, token: str | None = None) -> int:
     request = urllib.request.Request(
         build_search_url(username),
@@ -142,7 +149,7 @@ def main() -> int:
     try:
         merged_prs = args.merged_prs
         if merged_prs is None:
-            merged_prs = fetch_merged_pr_count(args.username, os.environ.get("GITHUB_TOKEN"))
+            merged_prs = fetch_merged_pr_count(args.username, resolve_search_token(os.environ))
         level, changed = sync_repository(merged_prs, args.write)
     except Exception as exc:
         print(f"PULL_SHARK_SYNC_FAIL:{exc}")
