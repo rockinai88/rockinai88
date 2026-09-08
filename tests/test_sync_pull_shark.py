@@ -88,3 +88,28 @@ class SourceGuardTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class FollowButtonTests(unittest.TestCase):
+    def test_generated_readme_uses_exact_profile_follow_link_and_local_asset(self) -> None:
+        import generate_profile
+
+        readme = generate_profile.render_readme()
+        self.assertIn('href="https://github.com/rockinai88"', readme)
+        self.assertIn('src="./assets/follow-rockinai88.svg"', readme)
+        self.assertIn('alt="Follow @rockinai88"', readme)
+        self.assertNotIn("shields.io", readme.lower())
+
+    def test_follow_button_asset_is_local_svg(self) -> None:
+        asset = ROOT / "assets" / "follow-rockinai88.svg"
+        self.assertTrue(asset.is_file())
+        text = asset.read_text(encoding="utf-8")
+        self.assertIn("Follow @rockinai88", text)
+        self.assertNotRegex(text, r'(?:href|src)=["\']https?://')
+        self.assertNotRegex(text, r'url\(\s*https?://')
+
+
+class FollowGateTests(unittest.TestCase):
+    def test_full_gate_renders_follow_asset(self) -> None:
+        gate = (ROOT / "scripts" / "profile-full-gate.ps1").read_text(encoding="utf-8")
+        self.assertIn("$Config.follow.asset", gate)

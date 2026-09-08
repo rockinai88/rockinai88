@@ -19,6 +19,11 @@
     "Python",
     "PowerShell"
   ],
+  "follow": {
+    "url": "https://github.com/rockinai88",
+    "asset": "./assets/follow-rockinai88.svg",
+    "label": "Follow @rockinai88"
+  },
   "assets": {
     "hero_dark": "./assets/rockin-logo-dark.svg",
     "hero_light": "./assets/rockin-logo-light.svg",

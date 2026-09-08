@@ -35,7 +35,8 @@ def load_json(path: Path) -> dict:
 
 
 def public_files(profile: dict) -> list[Path]:
-    for relative in profile["assets"].values():
+    asset_paths = list(profile["assets"].values()) + [profile["follow"]["asset"]]
+    for relative in asset_paths:
         path = (ROOT / relative).resolve()
         if ROOT not in path.parents:
             fail(f"ASSET_OUTSIDE_REPO:{relative}")
@@ -50,7 +51,7 @@ def public_files(profile: dict) -> list[Path]:
 
 
 def validate_profile_shape(profile: dict) -> None:
-    required = {"brand", "tagline", "focus", "stack", "assets", "rights"}
+    required = {"brand", "tagline", "focus", "stack", "follow", "assets", "rights"}
     missing = sorted(required - profile.keys())
     if missing:
         fail(f"PROFILE_KEYS_MISSING:{','.join(missing)}")
@@ -58,6 +59,13 @@ def validate_profile_shape(profile: dict) -> None:
         fail("PROFILE_TEXT_EMPTY")
     if not profile["focus"] or not profile["stack"]:
         fail("PROFILE_LIST_EMPTY")
+    follow = profile["follow"]
+    if set(follow) != {"url", "asset", "label"}:
+        fail("PROFILE_FOLLOW_KEYS_INVALID")
+    if follow["url"] != "https://github.com/rockinai88":
+        fail("PROFILE_FOLLOW_URL_INVALID")
+    if follow["asset"] != "./assets/follow-rockinai88.svg" or follow["label"] != "Follow @rockinai88":
+        fail("PROFILE_FOLLOW_SURFACE_INVALID")
     expected_assets = {"hero_dark", "hero_light", "achievements_dark", "achievements_light"}
     if set(profile["assets"]) != expected_assets:
         fail("PROFILE_ASSET_KEYS_INVALID")
@@ -114,9 +122,13 @@ def validate_readme(profile: dict) -> None:
     expected = render_readme()
     if current != expected:
         fail("README_NOT_GENERATED")
-    if NETWORK_REF_RE.search(current):
+    follow_href = f'href="{profile["follow"]["url"]}"'
+    if current.count(follow_href) != 1:
+        fail("README_FOLLOW_LINK_INVALID")
+    network_safe = current.replace(follow_href, 'href="#follow-profile"', 1)
+    if NETWORK_REF_RE.search(network_safe):
         fail("README_EXTERNAL_RESOURCE")
-    for relative in profile["assets"].values():
+    for relative in list(profile["assets"].values()) + [profile["follow"]["asset"]]:
         if relative not in current:
             fail(f"README_ASSET_REFERENCE_MISSING:{relative}")
     if profile["rights"] not in current:

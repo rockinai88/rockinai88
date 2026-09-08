@@ -12,6 +12,10 @@ AI Systems · Apps · AI Agents · Skills · Automation · Cloud Workflows
 
 `GitHub` · `GitHub Actions` · `Vercel` · `TypeScript` · `Next.js` · `Python` · `PowerShell`
 
+<a href="https://github.com/rockinai88">
+  <img src="./assets/follow-rockinai88.svg" alt="Follow @rockinai88" height="48">
+</a>
+
 ### GitHub Achievements
 
 <picture>

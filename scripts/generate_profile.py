@@ -32,6 +32,7 @@ def render_readme() -> str:
     achievement_data = load_json(ACHIEVEMENTS_PATH)
     achievements = achievement_data["achievements"]
     assets = profile["assets"]
+    follow = profile["follow"]
     focus = " · ".join(profile["focus"])
     stack = " · ".join(f"`{item}`" for item in profile["stack"])
     trophy_text = " · ".join(achievement_label(item) for item in achievements)
@@ -51,6 +52,10 @@ def render_readme() -> str:
 {focus}
 
 {stack}
+
+<a href="{follow['url']}">
+  <img src="{follow['asset']}" alt="{follow['label']}" height="48">
+</a>
 
 ### GitHub Achievements
 

@@ -58,6 +58,7 @@ if (-not $SkipRender) {
     $Targets = @(
         $Config.assets.hero_dark,
         $Config.assets.hero_light,
+        $Config.follow.asset,
         $Config.assets.achievements_dark,
         $Config.assets.achievements_light
     )
