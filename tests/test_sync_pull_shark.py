@@ -77,6 +77,21 @@ class AutomationContractTests(unittest.TestCase):
         self.assertIn("python3 scripts/sync_pull_shark.py --write", workflow)
 
 
+class CredentialContractTests(unittest.TestCase):
+    def test_requires_dedicated_achievement_token(self) -> None:
+        with self.assertRaisesRegex(RuntimeError, "ACHIEVEMENT_GITHUB_TOKEN_MISSING"):
+            sync.resolve_search_token({"GITHUB_TOKEN": "repo-scoped-token"})
+        self.assertEqual(
+            sync.resolve_search_token({"ACHIEVEMENT_GITHUB_TOKEN": "dedicated-user-token"}),
+            "dedicated-user-token",
+        )
+
+    def test_workflow_uses_only_dedicated_search_secret(self) -> None:
+        workflow = (ROOT / ".github" / "workflows" / "sync-achievements.yml").read_text(encoding="utf-8")
+        self.assertIn("ACHIEVEMENT_GITHUB_TOKEN: ${{ secrets.ACHIEVEMENT_GITHUB_TOKEN }}", workflow)
+        sync_block = workflow.split("- name: Sync verified Pull Shark level", 1)[1].split("- name: Regenerate profile README", 1)[0]
+        self.assertNotIn("GITHUB_TOKEN: ${{ github.token }}", sync_block)
+
 class SourceGuardTests(unittest.TestCase):
     def test_rejects_unverified_pull_shark_source(self) -> None:
         data = {"version": 1, "achievements": [

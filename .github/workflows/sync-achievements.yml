@@ -26,7 +26,7 @@ jobs:
 
       - name: Sync verified Pull Shark level
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          ACHIEVEMENT_GITHUB_TOKEN: ${{ secrets.ACHIEVEMENT_GITHUB_TOKEN }}
         run: python3 scripts/sync_pull_shark.py --write
 
       - name: Regenerate profile README
