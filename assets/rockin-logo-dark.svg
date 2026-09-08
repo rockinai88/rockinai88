@@ -1,1 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="980" height="190" viewBox="0 0 980 190" role="img" aria-label="RockIn AI Factory"><defs><linearGradient id="brand" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#36d7ff"/><stop offset="1" stop-color="#8b7cff"/></linearGradient><filter id="depth" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000" flood-opacity=".32"/></filter></defs><rect width="980" height="190" rx="30" fill="#07090d"/><g transform="translate(86 48)" filter="url(#depth)"><path d="M0 34 34 0l34 20-34 34z" fill="url(#brand)"/><path d="M34 54v38L0 72V34z" fill="#1f8cff" opacity=".78"/><path d="M34 54 68 20v38L34 92z" fill="#765cff" opacity=".9"/></g><text x="190" y="86" fill="#f5f7ff" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="54" font-weight="900" letter-spacing="3">ROCKIN AI</text><text x="194" y="128" fill="url(#brand)" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="22" font-weight="800" letter-spacing="5">FACTORY</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="220" viewBox="0 0 980 220" role="img" aria-label="RockIn AI Factory â€” AI systems, agents and automation">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#05070b"/><stop offset="1" stop-color="#101827"/></linearGradient>
+  <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#36d7ff"/><stop offset=".52" stop-color="#438cff"/><stop offset="1" stop-color="#8b7cff"/></linearGradient>
+  <radialGradient id="aura"><stop stop-color="#36d7ff" stop-opacity=".32"/><stop offset="1" stop-color="#36d7ff" stop-opacity="0"/></radialGradient>
+  <linearGradient id="sweep" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".26"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  <filter id="depth" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000" flood-opacity=".38"/></filter>
+  <filter id="glow"><feGaussianBlur stdDeviation="8"/></filter>
+</defs>
+<style>
+@keyframes cubeFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-7px) rotate(1.2deg)}}
+@keyframes auraPulse{0%,100%{opacity:.38}50%{opacity:.78}}
+@keyframes scan{0%{transform:translateX(-260px) skewX(-18deg)}55%,100%{transform:translateX(1180px) skewX(-18deg)}}
+@keyframes linePulse{0%,100%{opacity:.45}50%{opacity:.95}}
+.cube{animation:cubeFloat 5.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}.aura{animation:auraPulse 4s ease-in-out infinite}.scan{animation:scan 7.5s ease-in-out infinite}.line{animation:linePulse 3.8s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.cube,.aura,.scan,.line{animation:none!important}}
+</style>
+<rect width="980" height="220" rx="30" fill="url(#bg)"/><rect x="18" y="18" width="944" height="184" rx="24" fill="none" stroke="#273246"/>
+<ellipse class="aura" cx="123" cy="109" rx="92" ry="82" fill="url(#aura)"/>
+<g transform="translate(82 59)" filter="url(#depth)"><g class="cube"><path d="M0 36 38 0l38 22-38 38z" fill="url(#brand)"/><path d="M38 60v43L0 81V36z" fill="#1489ff" opacity=".82"/><path d="M38 60 76 22v43l-38 38z" fill="#765cff" opacity=".95"/><path d="M8 37 38 8l29 17-29 29z" fill="#8feaff" opacity=".18"/></g></g>
+<text x="208" y="88" fill="#f7f9ff" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="56" font-weight="900" letter-spacing="3">ROCKIN AI</text>
+<text x="211" y="128" fill="url(#brand)" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21" font-weight="800" letter-spacing="6">FACTORY</text>
+<text x="210" y="165" fill="#9ba8bb" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16" font-weight="600" letter-spacing="1.6">AI SYSTEMS  /  AGENTS  /  AUTOMATION</text>
+<rect class="scan" x="-250" y="22" width="180" height="176" rx="40" fill="url(#sweep)" opacity=".18"/>
+<path class="line" d="M64 188H916" stroke="url(#brand)" stroke-width="2" opacity=".65"/>
+</svg>

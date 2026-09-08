@@ -3,22 +3,24 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/rockin-logo-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/rockin-logo-light.svg">
-  <img alt="RockIn AI Factory" src="./assets/rockin-logo-dark.svg" width="100%">
+  <img alt="RockIn AI Factory — AI systems, agents and automation" src="./assets/rockin-logo-dark.svg" width="100%">
 </picture>
 
-## RockIn AI Factory
+**Secure, reproducible AI engineering from idea to verified result.**
 
-We build secure, reproducible AI systems and automation from idea to verified result.
-
-**AI Systems · Apps · AI Agents · Skills · Automation · Cloud Workflows**
+AI Systems · Apps · AI Agents · Skills · Automation · Cloud Workflows
 
 `GitHub` · `GitHub Actions` · `Vercel` · `TypeScript` · `Next.js` · `Python` · `PowerShell`
 
 ### GitHub Achievements
 
-<img alt="Animated GitHub achievement trophies: Pull Shark x2, Pair Extraordinaire, YOLO and Quickdraw" src="./assets/github-achievements-motion.svg" width="100%">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/github-achievements-motion.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/github-achievements-motion-light.svg">
+  <img alt="Animated GitHub achievement trophies: Pull Shark x2, Pair Extraordinaire, YOLO and Quickdraw" src="./assets/github-achievements-motion.svg" width="100%">
+</picture>
 
-**Pull Shark ×2 · Pair Extraordinaire · YOLO · Quickdraw**
+<sub>Pull Shark ×2 · Pair Extraordinaire · YOLO · Quickdraw</sub>
 
 [Rights & usage](./RIGHTS.md)
 
