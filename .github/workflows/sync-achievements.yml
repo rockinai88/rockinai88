@@ -1,0 +1,54 @@
+name: Sync GitHub achievements
+
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-achievement-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          fetch-depth: 1
+
+      - name: Sync verified Pull Shark level
+        env:
+          ACHIEVEMENT_GITHUB_TOKEN: ${{ secrets.ACHIEVEMENT_GITHUB_TOKEN }}
+        run: python3 scripts/sync_pull_shark.py --write
+
+      - name: Validate achievement sync
+        run: |
+          python3 -m unittest discover -s tests -p 'test_*.py'
+          git diff --check
+
+      - name: Commit verified achievement change only
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "PROFILE_ACHIEVEMENTS_NO_CHANGE"
+            exit 0
+          fi
+          git add profile/achievements.json \
+            assets/github-achievements-motion.svg \
+            assets/github-achievements-motion-light.svg
+          if git diff --cached --quiet; then
+            echo "PROFILE_ACHIEVEMENTS_NO_STAGED_CHANGE"
+            exit 0
+          fi
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR_ID}+${GITHUB_ACTOR}@users.noreply.github.com"
+          git commit -m "chore(profile): sync GitHub achievements"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
